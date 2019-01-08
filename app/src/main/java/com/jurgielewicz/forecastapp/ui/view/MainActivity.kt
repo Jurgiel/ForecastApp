@@ -1,8 +1,10 @@
 package com.jurgielewicz.forecastapp.ui.view
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.jurgielewicz.forecastapp.R
 import com.jurgielewicz.forecastapp.base.BaseActivity
@@ -27,12 +29,28 @@ class MainActivity : BaseActivity<MainActivityPresenter>(), MainActivityContract
     }
 
     override fun initView() {
+        setUpViewPager()
+        pageSelectedListener()
+    }
+
+    override fun setUpViewPager() {
         val pagerAdapter = ViewPagerAdapter(supportFragmentManager)
         pagerAdapter.addFragments(CurrentWeatherFragment(), "NOW")
         pagerAdapter.addFragments(DailyWeatherFragment(), "DAILY")
         viewPager.adapter = pagerAdapter
         tabLayout.setupWithViewPager(viewPager)
     }
+
+    override fun pageSelectedListener() {
+        viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                presenter.handlePageListener()
+            }
+        })
+    }
+
+    override fun viewPagerCurrentItem(): Int = viewPager.currentItem
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
