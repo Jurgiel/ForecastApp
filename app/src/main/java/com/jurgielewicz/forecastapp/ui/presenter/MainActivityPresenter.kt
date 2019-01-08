@@ -21,6 +21,6 @@ class MainActivityPresenter(view: MainActivityView): BasePresenter<MainActivityV
     }
 
     override fun search(p0: Place?) {
-        
+
     }
 }
