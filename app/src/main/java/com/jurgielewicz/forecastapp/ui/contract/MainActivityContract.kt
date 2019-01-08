@@ -5,6 +5,6 @@ import com.jurgielewicz.forecastapp.base.BaseView
 interface MainActivityContract {
 
     interface MainActivityView:BaseView {
-
+        fun initView()
     }
 }
