@@ -2,6 +2,8 @@ package com.jurgielewicz.forecastapp.ui.presenter
 
 import android.util.Log
 import com.google.android.gms.location.places.Place
+import com.jurgielewicz.forecastapp.RxBus.RxBus
+import com.jurgielewicz.forecastapp.RxBus.RxEvent
 import com.jurgielewicz.forecastapp.base.BasePresenter
 import com.jurgielewicz.forecastapp.retrofit.WeatherApi
 import com.jurgielewicz.forecastapp.ui.contract.MainActivityContract
@@ -24,6 +26,9 @@ class MainActivityPresenter(view: MainActivityView): BasePresenter<MainActivityV
     @Inject
     lateinit var weatherApi: WeatherApi
 
+    @Inject
+    lateinit var bus: RxBus
+
     override fun onViewCreated() {
         view.initView()
     }
@@ -45,8 +50,8 @@ class MainActivityPresenter(view: MainActivityView): BasePresenter<MainActivityV
                     .requestHourlyWeather(p0?.latLng?.latitude, p0?.latLng?.longitude, clientId, clientSecret)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ result -> Log.d(TAG, result.response?.get(0)?.periods?.get(0)?.weather)
-                                setSearched(0)},
+                    .subscribe({ result -> bus.publish(RxEvent.EventShowCurrentWeather(result.response, place))
+                                setSearched(0) },
                             { error -> Log.d(TAG, error.message) }
                     )
 
@@ -54,8 +59,8 @@ class MainActivityPresenter(view: MainActivityView): BasePresenter<MainActivityV
                     .requestDailyWeather(p0?.latLng?.latitude, p0?.latLng?.longitude, clientId, clientSecret)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ result -> Log.d(TAG, result.response?.get(0)?.periods?.get(0)?.weather)
-                                setSearched(1)},
+                    .subscribe({ result -> bus.publish(RxEvent.EventShowDailyWeather(result.response))
+                                setSearched(1) },
                             { error -> Log.d(TAG, error.message) })
         }
     }

@@ -1,6 +1,9 @@
 package com.jurgielewicz.forecastapp.ui.presenter
 
+import com.jurgielewicz.forecastapp.base.BaseFragmentPresenter
 import com.jurgielewicz.forecastapp.base.BasePresenter
 import com.jurgielewicz.forecastapp.ui.contract.DailyWeatherContract.DailyWeatherView
 
-class DailyWeatherPresenter(v: DailyWeatherView):BasePresenter<DailyWeatherView>(v)
+class DailyWeatherPresenter(v: DailyWeatherView):BaseFragmentPresenter(){
+
+}
