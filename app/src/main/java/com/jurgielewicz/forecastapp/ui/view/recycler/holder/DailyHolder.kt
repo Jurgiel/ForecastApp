@@ -5,8 +5,7 @@ import android.view.View
 import com.jurgielewicz.forecastapp.dataModel.Periods
 import kotlinx.android.synthetic.main.row_daily_weather.view.*
 
-class DailyHolder( view: View): RecyclerView.ViewHolder(view) {
-    private var view: View = view
+class DailyHolder( private val view: View): RecyclerView.ViewHolder(view) {
 
     fun bindItem(item: Periods?){
         view.weatherTextView_daily_weather_row.text = item?.weather

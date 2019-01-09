@@ -8,7 +8,7 @@ import com.jurgielewicz.forecastapp.dataModel.Response
 import com.jurgielewicz.forecastapp.ui.view.recycler.holder.DailyHolder
 
 class DailyAdapter(private val list: List<Response>?): RecyclerView.Adapter<DailyHolder>() {
-    
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val weatherRow = layoutInflater.inflate(R.layout.row_daily_weather, parent, false)

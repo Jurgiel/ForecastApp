@@ -7,7 +7,7 @@ import com.jurgielewicz.forecastapp.R
 import com.jurgielewicz.forecastapp.dataModel.Response
 import com.jurgielewicz.forecastapp.ui.view.recycler.holder.HourlyHolder
 
-class HourlyWeatherAdapter(private val list: List<Response>?): RecyclerView.Adapter<HourlyHolder>(){
+class HourlyAdapter(private val list: List<Response>?): RecyclerView.Adapter<HourlyHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourlyHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
