@@ -1,13 +1,14 @@
 package com.jurgielewicz.forecastapp.di.compoents
 
 import com.jurgielewicz.forecastapp.di.modules.RetrofitModule
+import com.jurgielewicz.forecastapp.di.modules.RxBusModule
 import com.jurgielewicz.forecastapp.ui.presenter.MainActivityPresenter
 import dagger.Component
 
 import javax.inject.Singleton
 
 @Singleton
-@Component (modules = [RetrofitModule::class])
+@Component (modules = [RetrofitModule::class, RxBusModule::class])
 interface MainActivityComponent {
     fun inject(presenter: MainActivityPresenter)
 
@@ -16,5 +17,6 @@ interface MainActivityComponent {
         fun build(): MainActivityComponent
 
         fun retrofitModule(retrofitModule: RetrofitModule): Builder
+        fun rxbusModule(rxBusModule: RxBusModule):Builder
     }
 }
