@@ -64,6 +64,7 @@ class MainActivity : BaseActivity<MainActivityPresenter>(), MainActivityContract
         val placeAutocompleteFragment = fragmentManager.findFragmentById(R.id.autocomplete_fragment)as? PlaceAutocompleteFragment
         placeAutocompleteFragment?.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place?) {
+                presenter.setSearched(2)
                 presenter.search(p0)
             }
 

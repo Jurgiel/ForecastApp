@@ -17,5 +17,6 @@ interface MainActivityContract {
     interface MainActivityPresenter  {
         fun handlePageListener()
         fun search(p0: Place?)
+        fun setSearched(i: Int)
     }
 }
