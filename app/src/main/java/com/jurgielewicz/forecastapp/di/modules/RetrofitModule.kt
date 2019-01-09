@@ -4,6 +4,7 @@ import com.jurgielewicz.forecastapp.retrofit.WeatherApi
 import com.jurgielewicz.forecastapp.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -12,10 +13,12 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object RetrofitModule {
 
     @Provides
+    @Reusable
     internal fun provideWeatherApi(retrofit: Retrofit): WeatherApi = retrofit.create(WeatherApi::class.java)
 
 
     @Provides
+    @Reusable
     internal fun provideRetrofitInterface(): Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())

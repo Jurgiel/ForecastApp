@@ -6,6 +6,8 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.widget.Toast
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.places.Place
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment
@@ -36,6 +38,7 @@ class MainActivity : BaseActivity<MainActivityPresenter>(), MainActivityContract
     override fun initView() {
         setUpViewPager()
         pageSelectedListener()
+        placeSelectedListener()
     }
 
     override fun setUpViewPager() {
@@ -58,14 +61,14 @@ class MainActivity : BaseActivity<MainActivityPresenter>(), MainActivityContract
     override fun viewPagerCurrentItem(): Int = viewPager.currentItem
 
     override fun placeSelectedListener() {
-        val placeAutocompleteFragment = autocomplete_fragment as PlaceAutocompleteFragment
-        placeAutocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+        val placeAutocompleteFragment = fragmentManager.findFragmentById(R.id.autocomplete_fragment)as? PlaceAutocompleteFragment
+        placeAutocompleteFragment?.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place?) {
                 presenter.search(p0)
             }
 
             override fun onError(p0: Status?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.d("MainActivityError", p0?.statusMessage)
             }
         })
     }
