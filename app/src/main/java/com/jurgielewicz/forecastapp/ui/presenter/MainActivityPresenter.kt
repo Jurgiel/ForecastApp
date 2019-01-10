@@ -52,8 +52,7 @@ class MainActivityPresenter(view: MainActivityView): BasePresenter<MainActivityV
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ result -> bus.publish(RxEvent.EventShowCurrentWeather(result.response, place))
                                 setSearched(0) },
-                            { error -> Log.d(TAG, error.message) }
-                    )
+                            { error -> Log.d(TAG, error.message) })
 
             1-> disposable = weatherApi
                     .requestDailyWeather(p0?.latLng?.latitude, p0?.latLng?.longitude, clientId, clientSecret)

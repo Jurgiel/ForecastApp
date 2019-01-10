@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-abstract class BaseFragment<P: BasePresenter<BaseView>> : Fragment() {
+abstract class BaseFragment<P: BaseFragmentPresenter> : Fragment() {
     protected lateinit var presenter: P
 
     override fun onCreate(savedInstanceState: Bundle?) {
