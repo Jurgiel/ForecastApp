@@ -7,7 +7,7 @@ import com.jurgielewicz.forecastapp.dataModel.Response
 
 interface CurrentWeatherContract {
 
-    interface View{
+    interface View:BaseView{
         fun updateView(list: List<Response>?, p0: Place?)
     }
 

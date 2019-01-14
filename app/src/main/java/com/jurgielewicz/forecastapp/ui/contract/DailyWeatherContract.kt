@@ -5,7 +5,7 @@ import com.jurgielewicz.forecastapp.dataModel.Response
 
 interface DailyWeatherContract {
 
-    interface View {
+    interface View:BaseView {
         fun updateView(list: List<Response>?)
     }
 }

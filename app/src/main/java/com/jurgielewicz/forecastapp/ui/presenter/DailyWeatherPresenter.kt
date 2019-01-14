@@ -6,7 +6,7 @@ import com.jurgielewicz.forecastapp.base.BaseFragmentPresenter
 import com.jurgielewicz.forecastapp.ui.contract.DailyWeatherContract
 import javax.inject.Inject
 
-class DailyWeatherPresenter(private val v: DailyWeatherContract.View):BaseFragmentPresenter(){
+class DailyWeatherPresenter(private val v: DailyWeatherContract.View):BaseFragmentPresenter<DailyWeatherContract.View>(v){
 
     @Inject
     lateinit var bus: RxBus
