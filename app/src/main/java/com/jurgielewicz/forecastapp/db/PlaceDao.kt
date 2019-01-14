@@ -5,12 +5,13 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.jurgielewicz.forecastapp.dataModel.Place
+import io.reactivex.Observable
 
 @Dao
 interface PlaceDao {
 
     @get:Query("SELECT * FROM place")
-    val all: List<Place>
+    val all: Observable<List<Place>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(place: Place)

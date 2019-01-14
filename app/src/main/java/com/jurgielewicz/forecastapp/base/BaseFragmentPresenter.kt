@@ -1,6 +1,5 @@
 package com.jurgielewicz.forecastapp.base
 
-import android.view.View
 import com.jurgielewicz.forecastapp.di.compoents.DaggerFragmentPresenterComponent
 import com.jurgielewicz.forecastapp.di.modules.RxBusModule
 import com.jurgielewicz.forecastapp.ui.presenter.CurrentWeatherPresenter
@@ -15,6 +14,7 @@ abstract class BaseFragmentPresenter {
 
     init {
         inject()
+
     }
 
     open fun onViewCreated(){}
