@@ -3,11 +3,10 @@ package com.jurgielewicz.forecastapp.ui.presenter
 import com.google.android.gms.location.places.Place
 import com.jurgielewicz.forecastapp.base.BasePresenter
 import com.jurgielewicz.forecastapp.ui.contract.MainActivityContract
-import com.jurgielewicz.forecastapp.ui.contract.MainActivityContract.MainActivityView
 import io.reactivex.disposables.Disposable
 
 
-class MainActivityPresenter(view: MainActivityView): BasePresenter<MainActivityView>(view), MainActivityContract.MainActivityPresenter {
+class MainActivityPresenter(val view: MainActivityContract.View): BasePresenter(), MainActivityContract.Presenter {
     private val TAG = "MainActivityPresenter"
 
     private var hourlySearched = true

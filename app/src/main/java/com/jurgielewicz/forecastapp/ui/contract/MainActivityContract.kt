@@ -1,12 +1,10 @@
 package com.jurgielewicz.forecastapp.ui.contract
 
 import com.google.android.gms.location.places.Place
-import com.jurgielewicz.forecastapp.base.BasePresenter
-import com.jurgielewicz.forecastapp.base.BaseView
 
 interface MainActivityContract {
 
-    interface MainActivityView:BaseView {
+    interface View {
         fun initView()
         fun setUpViewPager()
         fun pageSelectedListener()
@@ -14,7 +12,7 @@ interface MainActivityContract {
         fun placeSelectedListener()
     }
 
-    interface MainActivityPresenter  {
+    interface Presenter  {
         fun handlePageListener()
         fun search(p0: Place?)
         fun setSearched(i: Int)

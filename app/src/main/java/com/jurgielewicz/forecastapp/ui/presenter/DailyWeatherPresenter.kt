@@ -1,10 +1,10 @@
 package com.jurgielewicz.forecastapp.ui.presenter
 
 
-import com.jurgielewicz.forecastapp.base.BaseFragmentPresenter
+import com.jurgielewicz.forecastapp.base.BasePresenter
 import com.jurgielewicz.forecastapp.ui.contract.DailyWeatherContract
 
-class DailyWeatherPresenter(private val v: DailyWeatherContract.View):BaseFragmentPresenter<DailyWeatherContract.View>(v){
+class DailyWeatherPresenter(private val v: DailyWeatherContract.View):BasePresenter(){
 
 //    @Inject
 //    lateinit var bus: RxBus

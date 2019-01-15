@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.jurgielewicz.forecastapp.R
-import com.jurgielewicz.forecastapp.base.BaseFragment
 import com.jurgielewicz.forecastapp.dataModel.Response
 import com.jurgielewicz.forecastapp.ui.contract.DailyWeatherContract
 import com.jurgielewicz.forecastapp.ui.presenter.DailyWeatherPresenter
@@ -17,7 +16,7 @@ import com.jurgielewicz.forecastapp.ui.view.recycler.adapter.DailyAdapter
 import kotlinx.android.synthetic.main.fragment_daily_weather.view.*
 
 
-class DailyWeatherFragment : BaseFragment<DailyWeatherPresenter>(), DailyWeatherContract.View {
+class DailyWeatherFragment : Fragment(), DailyWeatherContract.View {
     private lateinit var rootView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -31,12 +30,9 @@ class DailyWeatherFragment : BaseFragment<DailyWeatherPresenter>(), DailyWeather
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.onViewCreated()
+
     }
 
-    override fun instantiatePresenter(): DailyWeatherPresenter {
-        return DailyWeatherPresenter(this)
-    }
 
     override fun updateView(list: List<Response>?) {
         rootView.dailyRecycler.adapter = DailyAdapter(list)

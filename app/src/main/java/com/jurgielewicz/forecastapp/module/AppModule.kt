@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room
 import com.jurgielewicz.forecastapp.RxBus.RxBus
 import com.jurgielewicz.forecastapp.db.PlaceDatabase
 import com.jurgielewicz.forecastapp.retrofit.WeatherApi
+import com.jurgielewicz.forecastapp.ui.contract.MainActivityContract
 import com.jurgielewicz.forecastapp.utils.BASE_URL
 import com.squareup.moshi.Moshi
 import org.koin.android.ext.koin.androidApplication
@@ -29,6 +30,10 @@ val retrofitModule = module {
 
 val rxBusModule = module {
     single { get<RxBus>() }
+}
+
+val presenterModule = module {
+    factory { MainActivityContract. }
 }
 
 fun createRetrofit(): Retrofit = Retrofit.Builder()
