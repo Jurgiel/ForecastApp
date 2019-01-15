@@ -1,8 +1,6 @@
 package com.jurgielewicz.forecastapp.base
 
 import com.jurgielewicz.forecastapp.di.compoents.DaggerFragmentPresenterComponent
-import com.jurgielewicz.forecastapp.di.modules.DaoModule
-import com.jurgielewicz.forecastapp.di.modules.RxBusModule
 import com.jurgielewicz.forecastapp.ui.presenter.CurrentWeatherPresenter
 import com.jurgielewicz.forecastapp.ui.presenter.DailyWeatherPresenter
 
