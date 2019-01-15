@@ -37,3 +37,6 @@ fun createRetrofit(): Retrofit = Retrofit.Builder()
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 fun createRetrofitService(retrofit: Retrofit):WeatherApi = retrofit.create(WeatherApi::class.java)
+
+//Gather all app modules
+val forecastApp = listOf(roomModule, retrofitModule, rxBusModule)
