@@ -10,15 +10,16 @@ import com.google.android.gms.location.places.Place
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment
 import com.google.android.gms.location.places.ui.PlaceSelectionListener
 import com.jurgielewicz.forecastapp.R
-import com.jurgielewicz.forecastapp.R.id.tabLayout
-import com.jurgielewicz.forecastapp.R.id.viewPager
 import com.jurgielewicz.forecastapp.ui.contract.MainActivityContract
-import com.jurgielewicz.forecastapp.ui.presenter.MainActivityPresenter
 import com.jurgielewicz.forecastapp.ui.view.adapters.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class MainActivity : AppCompatActivity(), MainActivityContract.View {
+
+    private val presenter: MainActivityContract.Presenter by inject { parametersOf(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

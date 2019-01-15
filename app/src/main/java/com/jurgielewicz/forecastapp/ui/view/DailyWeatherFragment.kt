@@ -14,10 +14,13 @@ import com.jurgielewicz.forecastapp.ui.contract.DailyWeatherContract
 import com.jurgielewicz.forecastapp.ui.presenter.DailyWeatherPresenter
 import com.jurgielewicz.forecastapp.ui.view.recycler.adapter.DailyAdapter
 import kotlinx.android.synthetic.main.fragment_daily_weather.view.*
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 
 class DailyWeatherFragment : Fragment(), DailyWeatherContract.View {
     private lateinit var rootView: View
+    private val presenter: DailyWeatherContract.Presenter by inject { parametersOf(this) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

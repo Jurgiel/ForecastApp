@@ -7,4 +7,7 @@ interface DailyWeatherContract {
     interface View {
         fun updateView(list: List<Response>?)
     }
+    interface Presenter {
+
+    }
 }

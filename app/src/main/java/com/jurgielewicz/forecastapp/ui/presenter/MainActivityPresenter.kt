@@ -1,12 +1,19 @@
 package com.jurgielewicz.forecastapp.ui.presenter
 
 import com.google.android.gms.location.places.Place
+import com.jurgielewicz.forecastapp.RxBus.RxBus
 import com.jurgielewicz.forecastapp.base.BasePresenter
+import com.jurgielewicz.forecastapp.db.PlaceDao
+import com.jurgielewicz.forecastapp.retrofit.WeatherApi
 import com.jurgielewicz.forecastapp.ui.contract.MainActivityContract
 import io.reactivex.disposables.Disposable
 
 
-class MainActivityPresenter(val view: MainActivityContract.View): BasePresenter(), MainActivityContract.Presenter {
+class MainActivityPresenter(val view: MainActivityContract.View,
+                            val dao: PlaceDao,
+                            val weatherApi: WeatherApi,
+                            val bus: RxBus): BasePresenter(), MainActivityContract.Presenter {
+
     private val TAG = "MainActivityPresenter"
 
     private var hourlySearched = true
@@ -14,11 +21,7 @@ class MainActivityPresenter(val view: MainActivityContract.View): BasePresenter(
     private var place: Place? = null
 
     private var disposable: Disposable? = null
-//    @Inject
-//    lateinit var weatherApi: WeatherApi
-//
-//    @Inject
-//    lateinit var bus: RxBus
+
 
     override fun onViewCreated() {
         view.initView()

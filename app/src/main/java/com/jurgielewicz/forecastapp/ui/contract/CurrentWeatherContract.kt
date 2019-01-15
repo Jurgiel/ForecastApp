@@ -10,6 +10,6 @@ interface CurrentWeatherContract {
     }
 
     interface Presenter {
-        fun showWeather()
+
     }
 }
