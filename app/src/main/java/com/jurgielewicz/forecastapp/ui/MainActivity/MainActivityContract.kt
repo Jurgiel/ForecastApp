@@ -1,4 +1,4 @@
-package com.jurgielewicz.forecastapp.ui.contract
+package com.jurgielewicz.forecastapp.ui.MainActivity
 
 import com.google.android.gms.location.places.Place
 import com.jurgielewicz.forecastapp.base.BasePresenter

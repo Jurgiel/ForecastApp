@@ -1,4 +1,4 @@
-package com.jurgielewicz.forecastapp.ui.view.adapters
+package com.jurgielewicz.forecastapp.ui.MainActivity
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

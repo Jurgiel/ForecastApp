@@ -1,4 +1,4 @@
-package com.jurgielewicz.forecastapp.ui.view
+package com.jurgielewicz.forecastapp.ui.DailyWeatherFragment
 
 
 import android.os.Bundle
@@ -10,8 +10,8 @@ import android.view.ViewGroup
 
 import com.jurgielewicz.forecastapp.R
 import com.jurgielewicz.forecastapp.dataModel.Response
-import com.jurgielewicz.forecastapp.ui.contract.DailyWeatherContract
-import com.jurgielewicz.forecastapp.ui.view.recycler.adapter.DailyAdapter
+import com.jurgielewicz.forecastapp.ui.DailyWeatherFragment.DailyWeatherContract
+import com.jurgielewicz.forecastapp.ui.MainActivity.recycler.adapter.DailyAdapter
 import kotlinx.android.synthetic.main.fragment_daily_weather.view.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf

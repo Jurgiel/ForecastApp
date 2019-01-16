@@ -1,4 +1,4 @@
-package com.jurgielewicz.forecastapp.ui.contract
+package com.jurgielewicz.forecastapp.ui.DailyWeatherFragment
 
 import com.jurgielewicz.forecastapp.dataModel.Response
 

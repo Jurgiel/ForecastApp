@@ -1,4 +1,4 @@
-package com.jurgielewicz.forecastapp.ui.presenter
+package com.jurgielewicz.forecastapp.ui.MainActivity
 
 import android.util.Log
 import com.google.android.gms.location.places.Place
@@ -6,7 +6,6 @@ import com.jurgielewicz.forecastapp.RxBus.RxBus
 import com.jurgielewicz.forecastapp.RxBus.RxEvent
 import com.jurgielewicz.forecastapp.db.PlaceDao
 import com.jurgielewicz.forecastapp.retrofit.WeatherApi
-import com.jurgielewicz.forecastapp.ui.contract.MainActivityContract
 import com.jurgielewicz.forecastapp.utils.CLIENT_ID
 import com.jurgielewicz.forecastapp.utils.CLIENT_SECRET
 import io.reactivex.android.schedulers.AndroidSchedulers

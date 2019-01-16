@@ -1,4 +1,4 @@
-package com.jurgielewicz.forecastapp.ui.view
+package com.jurgielewicz.forecastapp.ui.MainActivity
 
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
@@ -10,8 +10,8 @@ import com.google.android.gms.location.places.Place
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment
 import com.google.android.gms.location.places.ui.PlaceSelectionListener
 import com.jurgielewicz.forecastapp.R
-import com.jurgielewicz.forecastapp.ui.contract.MainActivityContract
-import com.jurgielewicz.forecastapp.ui.view.adapters.ViewPagerAdapter
+import com.jurgielewicz.forecastapp.ui.CurrentWeatherFragment.CurrentWeatherFragment
+import com.jurgielewicz.forecastapp.ui.DailyWeatherFragment.DailyWeatherFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.koin.android.ext.android.inject

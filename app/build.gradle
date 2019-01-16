@@ -56,5 +56,9 @@ dependencies {
     //google places
     implementation 'com.google.android.gms:play-services-places:16.0.0'
 
+    //stetho
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+
+
 
 }
