@@ -3,6 +3,7 @@ package com.jurgielewicz.forecastapp.ui.CurrentWeatherFragment
 import com.google.android.gms.location.places.Place
 import com.jurgielewicz.forecastapp.base.BasePresenter
 import com.jurgielewicz.forecastapp.dataModel.Response
+import io.reactivex.Single
 
 interface CurrentWeatherContract {
 
@@ -15,7 +16,7 @@ interface CurrentWeatherContract {
     interface Presenter:BasePresenter {
         fun save()
         fun delete()
-        fun saveClicked()
-        fun itemExists(lat: Double?, lng: Double?):Boolean
+        fun saveClicked(b: Boolean)
+        fun itemExists()
     }
 }

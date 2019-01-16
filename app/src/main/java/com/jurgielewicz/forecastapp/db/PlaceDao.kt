@@ -5,6 +5,7 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 interface PlaceDao {
@@ -16,6 +17,8 @@ interface PlaceDao {
     fun insert(place: Place)
 
     @Query("DELETE FROM place WHERE lat = :lat")
-    fun deleteByLat(lat: Long)
+    fun deleteByLat(lat: Double?)
 
+    @Query("SELECT * FROM place WHERE lat = :lat AND lng = :lng")
+    fun exist(lat: Double?, lng: Double?): Place
 }
