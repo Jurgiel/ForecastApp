@@ -1,6 +1,7 @@
 package com.jurgielewicz.forecastapp.ui.contract
 
 import com.google.android.gms.location.places.Place
+import com.jurgielewicz.forecastapp.base.BasePresenter
 
 interface MainActivityContract {
 
@@ -12,7 +13,7 @@ interface MainActivityContract {
         fun placeSelectedListener()
     }
 
-    interface Presenter  {
+    interface Presenter:BasePresenter  {
         fun handlePageListener()
         fun search(p0: Place?)
         fun setSearched(i: Int)

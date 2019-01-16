@@ -8,6 +8,6 @@ interface DailyWeatherContract {
         fun updateView(list: List<Response>?)
     }
     interface Presenter {
-
+        fun onViewCreated()
     }
 }

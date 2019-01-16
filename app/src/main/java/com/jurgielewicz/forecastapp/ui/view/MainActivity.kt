@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //presenter.onViewCreated()
+        presenter.onViewCreated()
     }
 
 
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
         viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-               // presenter.handlePageListener()
+                presenter.handlePageListener()
             }
         })
     }
@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
         val placeAutocompleteFragment = fragmentManager.findFragmentById(R.id.autocomplete_fragment)as? PlaceAutocompleteFragment
         placeAutocompleteFragment?.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place?) {
-//                presenter.setSearched(2)
-//                presenter.search(p0)
+              presenter.setSearched(2)
+              presenter.search(p0)
             }
 
             override fun onError(p0: Status?) {

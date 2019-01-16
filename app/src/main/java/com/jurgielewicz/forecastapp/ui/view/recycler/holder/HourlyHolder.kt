@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.jurgielewicz.forecastapp.dataModel.Periods
 import kotlinx.android.synthetic.main.row_hourly_weather.view.*
-import javax.inject.Inject
 
 class HourlyHolder(private val view: View): RecyclerView.ViewHolder(view) {
 

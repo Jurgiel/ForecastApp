@@ -1,12 +1,7 @@
 package com.jurgielewicz.forecastapp.base
 
-import com.jurgielewicz.forecastapp.ui.presenter.MainActivityPresenter
 
-abstract class BasePresenter {
-
-
-
+interface BasePresenter {
     open fun onViewCreated(){}
     open fun onViewDestroyed(){}
-
 }

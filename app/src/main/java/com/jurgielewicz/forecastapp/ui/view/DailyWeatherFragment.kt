@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import com.jurgielewicz.forecastapp.R
 import com.jurgielewicz.forecastapp.dataModel.Response
 import com.jurgielewicz.forecastapp.ui.contract.DailyWeatherContract
-import com.jurgielewicz.forecastapp.ui.presenter.DailyWeatherPresenter
 import com.jurgielewicz.forecastapp.ui.view.recycler.adapter.DailyAdapter
 import kotlinx.android.synthetic.main.fragment_daily_weather.view.*
 import org.koin.android.ext.android.inject
@@ -33,7 +32,7 @@ class DailyWeatherFragment : Fragment(), DailyWeatherContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        presenter.onViewCreated()
     }
 
 
