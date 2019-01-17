@@ -14,7 +14,7 @@ interface PlaceDao {
     fun getAll(): Flowable<List<Place>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(place: Place)
+    fun insert(place: Place?)
 
     @Query("DELETE FROM place WHERE lat = :lat")
     fun deleteByLat(lat: Double?)

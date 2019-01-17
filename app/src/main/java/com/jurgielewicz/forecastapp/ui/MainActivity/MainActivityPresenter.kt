@@ -19,13 +19,11 @@ class MainActivityPresenter(private val view: MainActivityContract.View,
                             private val bus: RxBus):  MainActivityContract.Presenter {
 
     private val TAG = "MainActivityPresenter"
-
     private var hourlySearched = true
     private var dailySearched = true
-    private var place: Place? = null
-
+    private var place: com.jurgielewicz.forecastapp.db.Place? = null
     private var disposable: Disposable? = null
-
+    lateinit var savedPlaces: List<com.jurgielewicz.forecastapp.db.Place>
 
     override fun onViewCreated() {
         view.initView()
@@ -40,12 +38,17 @@ class MainActivityPresenter(private val view: MainActivityContract.View,
         }
     }
 
-    override fun search(p0: Place?) {
+    override fun searchClicked(p0: Place?) {
+        val p: com.jurgielewicz.forecastapp.db.Place? = com.jurgielewicz.forecastapp.db.Place(p0?.latLng?.latitude, p0?.latLng?.longitude, p0?.name.toString())
+       place = p
+        search(p)
+    }
+
+    override fun search(place: com.jurgielewicz.forecastapp.db.Place?) {
         val item = view.viewPagerCurrentItem()
-        place = p0
         when(item) {
            0-> disposable = weatherApi
-                    .requestHourlyWeather(p0?.latLng?.latitude, p0?.latLng?.longitude, CLIENT_ID, CLIENT_SECRET)
+                    .requestHourlyWeather(place?.lat, place?.lng, CLIENT_ID, CLIENT_SECRET)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ result -> bus.publish(RxEvent.EventShowCurrentWeather(result.response, place))
@@ -53,7 +56,7 @@ class MainActivityPresenter(private val view: MainActivityContract.View,
                             { error -> Log.d(TAG, error.message) })
 
             1-> disposable = weatherApi
-                    .requestDailyWeather(p0?.latLng?.latitude, p0?.latLng?.longitude, CLIENT_ID, CLIENT_SECRET)
+                    .requestDailyWeather(place?.lat, place?.lng, CLIENT_ID, CLIENT_SECRET)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ result -> bus.publish(RxEvent.EventShowDailyWeather(result.response))
@@ -72,5 +75,18 @@ class MainActivityPresenter(private val view: MainActivityContract.View,
             }
 
         }
+    }
+
+    override fun drawerOpened() {
+        dao.getAll()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { result -> savedPlaces = result
+                            view.showSavedPlaces(result)}
+    }
+
+    override fun itemClicked(position: Int) {
+        val place = savedPlaces[position]
+        search(place)
     }
 }

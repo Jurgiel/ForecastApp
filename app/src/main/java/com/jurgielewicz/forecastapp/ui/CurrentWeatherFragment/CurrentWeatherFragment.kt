@@ -26,7 +26,7 @@ class CurrentWeatherFragment : Fragment(), CurrentWeatherContract.View  {
         rootView = inflater.inflate(R.layout.fragment_current_weather, container, false)
         rootView.hourlyRecycler.layoutManager = LinearLayoutManager(activity)
         rootView.hourlyRecycler.adapter = null
-        rootView.saveLocationButton.setOnClickListener { presenter.itemExists() }
+        rootView.saveLocationButton.setOnClickListener { presenter.saveClicked() }
         return rootView
     }
 
@@ -36,10 +36,10 @@ class CurrentWeatherFragment : Fragment(), CurrentWeatherContract.View  {
     }
 
 
-    override fun updateView(list: List<Response>?, p0: Place?) {
+    override fun updateView(list: List<Response>?, place: com.jurgielewicz.forecastapp.db.Place?) {
         val data = list?.get(0)?.periods?.get(0)
         setImageNotSaved()
-        rootView.cityTextView_CurrentLayout.text = p0?.name
+        rootView.cityTextView_CurrentLayout.text = place?.name
         rootView.weatherTextView_CurrentLayout.text = data?.weather
         rootView.feelsLikeTextView_CurrentLayout.text = data?.feelsLikeC.toString().plus("℃\t")
         rootView.temperatureTextView_CurrentLayout.text = data?.tempC.toString().plus("℃\t")

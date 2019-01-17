@@ -14,14 +14,18 @@ import io.reactivex.schedulers.Schedulers
 class CurrentWeatherPresenter(private val v: CurrentWeatherContract.View,
                               private val dao: PlaceDao,
                               private val bus: RxBus):  CurrentWeatherContract.Presenter {
-    lateinit var place: Place
-
+    private var place: Place? = null
+    private var exists = false
 
     override fun onViewCreated() {
         bus.listen(RxEvent.EventShowCurrentWeather::class.java).subscribe {
-            v.updateView(it.list, it.p0)
-            place = Place( it.p0?.latLng?.latitude, it.p0?.latLng?.longitude, it.p0?.name as String)
-
+            v.updateView(it.list, it.place)
+            place = it.place
+            itemExists()
+            when(exists){
+                true -> v.setImageSaved()
+                false -> v.setImageNotSaved()
+            }
 
         }
     }
@@ -36,18 +40,19 @@ class CurrentWeatherPresenter(private val v: CurrentWeatherContract.View,
          Observable.just(dao)
                 .subscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                 .map { it -> it.exist(place.lat, place.lng) }
-                .subscribe( { it -> saveClicked(true) },
-                        {error -> saveClicked(false)})
+                 .map { it -> it.exist(place?.lat, place?.lng) }
+                .subscribe( { it -> exists = true },
+                        {error -> exists = false})
     }
 
 
     override fun delete() {
-        dao.deleteByLat(place.lat)
+        dao.deleteByLat(place?.lat)
     }
 
-    override fun saveClicked(b: Boolean) {
-        when (b) {
+    override fun saveClicked() {
+        itemExists()
+        when (exists) {
             true -> {v.setImageNotSaved()
                     delete()}
             false -> {v.setImageSaved()

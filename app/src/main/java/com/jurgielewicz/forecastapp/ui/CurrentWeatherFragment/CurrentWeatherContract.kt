@@ -8,7 +8,7 @@ import io.reactivex.Single
 interface CurrentWeatherContract {
 
     interface View{
-        fun updateView(list: List<Response>?, p0: Place?)
+        fun updateView(list: List<Response>?, place: com.jurgielewicz.forecastapp.db.Place?)
         fun setImageSaved()
         fun setImageNotSaved()
     }
@@ -16,7 +16,7 @@ interface CurrentWeatherContract {
     interface Presenter:BasePresenter {
         fun save()
         fun delete()
-        fun saveClicked(b: Boolean)
+        fun saveClicked()
         fun itemExists()
     }
 }
