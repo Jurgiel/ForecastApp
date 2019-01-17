@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
     override fun pageSelectedListener() {
         viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener(){
             override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
                 presenter.handlePageListener()
             }
         })
@@ -67,7 +66,7 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
         placeAutocompleteFragment?.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place?) {
               presenter.setSearched(2)
-              presenter.search(com.jurgielewicz.forecastapp.db.Place(p0?.latLng?.latitude, p0?.latLng?.longitude, p0?.name.toString()))
+              presenter.searchClicked(p0)
             }
 
             override fun onError(p0: Status?) {

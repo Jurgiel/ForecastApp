@@ -17,7 +17,7 @@ interface PlaceDao {
     fun insert(place: Place?)
 
     @Query("DELETE FROM place WHERE lat = :lat")
-    fun deleteByLat(lat: Double?)
+    fun delete(lat: Double?)
 
     @Query("SELECT * FROM place WHERE lat = :lat AND lng = :lng")
     fun exist(lat: Double?, lng: Double?): Place

@@ -38,7 +38,7 @@ class CurrentWeatherFragment : Fragment(), CurrentWeatherContract.View  {
 
     override fun updateView(list: List<Response>?, place: com.jurgielewicz.forecastapp.db.Place?) {
         val data = list?.get(0)?.periods?.get(0)
-        setImageNotSaved()
+
         rootView.cityTextView_CurrentLayout.text = place?.name
         rootView.weatherTextView_CurrentLayout.text = data?.weather
         rootView.feelsLikeTextView_CurrentLayout.text = data?.feelsLikeC.toString().plus("℃\t")

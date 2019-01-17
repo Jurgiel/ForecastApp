@@ -19,7 +19,7 @@ interface MainActivityContract {
     interface Presenter:BasePresenter  {
         fun handlePageListener()
         fun searchClicked(p0: Place?)
-        fun search(place: com.jurgielewicz.forecastapp.db.Place?)
+        fun search(place: com.jurgielewicz.forecastapp.db.Place)
         fun setSearched(i: Int)
         fun drawerOpened()
         fun itemClicked(position: Int)

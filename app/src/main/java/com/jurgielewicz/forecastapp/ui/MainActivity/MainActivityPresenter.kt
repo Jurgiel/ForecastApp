@@ -1,9 +1,9 @@
 package com.jurgielewicz.forecastapp.ui.MainActivity
 
 import android.util.Log
-import com.google.android.gms.location.places.Place
 import com.jurgielewicz.forecastapp.RxBus.RxBus
 import com.jurgielewicz.forecastapp.RxBus.RxEvent
+import com.jurgielewicz.forecastapp.db.Place
 import com.jurgielewicz.forecastapp.db.PlaceDao
 import com.jurgielewicz.forecastapp.retrofit.WeatherApi
 import com.jurgielewicz.forecastapp.utils.CLIENT_ID
@@ -21,7 +21,7 @@ class MainActivityPresenter(private val view: MainActivityContract.View,
     private val TAG = "MainActivityPresenter"
     private var hourlySearched = true
     private var dailySearched = true
-    private var place: com.jurgielewicz.forecastapp.db.Place? = null
+   lateinit var place: Place
     private var disposable: Disposable? = null
     lateinit var savedPlaces: List<com.jurgielewicz.forecastapp.db.Place>
 
@@ -31,36 +31,36 @@ class MainActivityPresenter(private val view: MainActivityContract.View,
 
     override fun handlePageListener() {
         val item = view.viewPagerCurrentItem()
-        if(item == 0 && !hourlySearched){
-            search(place)
-        }else if (item == 1 && !dailySearched){
-            search(place)
+            if(item == 0 && !hourlySearched){
+                Log.d("Search hourly", place?.name + place?.lat + place?.lng)
+                search(place)
+            }else if (item == 1 && !dailySearched){
+                Log.d("Search daily", "debapp")
+                search(place)
+            }
         }
+
+    override fun searchClicked(p0: com.google.android.gms.location.places.Place?) {
+        place = Place(p0?.latLng?.latitude, p0?.latLng?.longitude, p0?.name.toString())
+        search(place)
     }
 
-    override fun searchClicked(p0: Place?) {
-        val p: com.jurgielewicz.forecastapp.db.Place? = com.jurgielewicz.forecastapp.db.Place(p0?.latLng?.latitude, p0?.latLng?.longitude, p0?.name.toString())
-       place = p
-        search(p)
-    }
-
-    override fun search(place: com.jurgielewicz.forecastapp.db.Place?) {
+    override fun search(place: com.jurgielewicz.forecastapp.db.Place) {
         val item = view.viewPagerCurrentItem()
+        setSearched(item)
         when(item) {
            0-> disposable = weatherApi
                     .requestHourlyWeather(place?.lat, place?.lng, CLIENT_ID, CLIENT_SECRET)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ result -> bus.publish(RxEvent.EventShowCurrentWeather(result.response, place))
-                                setSearched(0) },
+                    .subscribe({ result -> bus.publish(RxEvent.EventShowCurrentWeather(result.response, place)) },
                             { error -> Log.d(TAG, error.message) })
 
             1-> disposable = weatherApi
                     .requestDailyWeather(place?.lat, place?.lng, CLIENT_ID, CLIENT_SECRET)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ result -> bus.publish(RxEvent.EventShowDailyWeather(result.response))
-                                setSearched(1) },
+                    .subscribe({ result -> bus.publish(RxEvent.EventShowDailyWeather(result.response)) },
                             { error -> Log.d(TAG, error.message) })
         }
     }
@@ -86,7 +86,8 @@ class MainActivityPresenter(private val view: MainActivityContract.View,
     }
 
     override fun itemClicked(position: Int) {
-        val place = savedPlaces[position]
+        place = savedPlaces[position]
+        setSearched(2)
         search(place)
     }
 }
