@@ -1,11 +1,10 @@
-package com.jurgielewicz.forecastapp.ui.MainActivity.recycler.adapter
+package com.jurgielewicz.forecastapp.ui.CurrentWeatherFragment
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.jurgielewicz.forecastapp.R
 import com.jurgielewicz.forecastapp.dataModel.Response
-import com.jurgielewicz.forecastapp.ui.MainActivity.recycler.holder.HourlyHolder
 
 class HourlyAdapter(private val list: List<Response>?): RecyclerView.Adapter<HourlyHolder>(){
 

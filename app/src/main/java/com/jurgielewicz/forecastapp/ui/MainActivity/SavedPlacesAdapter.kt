@@ -1,11 +1,10 @@
-package com.jurgielewicz.forecastapp.ui.MainActivity.recycler.adapter
+package com.jurgielewicz.forecastapp.ui.MainActivity
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.jurgielewicz.forecastapp.R
 import com.jurgielewicz.forecastapp.db.Place
-import com.jurgielewicz.forecastapp.ui.MainActivity.recycler.holder.SavedHolder
 
 
 class SavedPlacesAdapter(private val places: List<Place>): RecyclerView.Adapter<SavedHolder>(){

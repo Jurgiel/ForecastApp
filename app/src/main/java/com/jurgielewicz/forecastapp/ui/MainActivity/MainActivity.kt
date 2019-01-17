@@ -15,7 +15,6 @@ import com.google.android.gms.location.places.ui.PlaceSelectionListener
 import com.jurgielewicz.forecastapp.R
 import com.jurgielewicz.forecastapp.ui.CurrentWeatherFragment.CurrentWeatherFragment
 import com.jurgielewicz.forecastapp.ui.DailyWeatherFragment.DailyWeatherFragment
-import com.jurgielewicz.forecastapp.ui.MainActivity.recycler.adapter.SavedPlacesAdapter
 import com.jurgielewicz.forecastapp.utils.OnItemClickListener
 import com.jurgielewicz.forecastapp.utils.addOnItemClickListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -96,6 +95,10 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
                     presenter.drawerOpened()
             }
         } )
+    }
+
+    override fun closeDrawer(){
+        drawer_layout.closeDrawer(GravityCompat.START)
     }
 
     override fun onBackPressed() {

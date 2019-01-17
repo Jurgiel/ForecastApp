@@ -1,4 +1,4 @@
-package com.jurgielewicz.forecastapp.ui.MainActivity.recycler.holder
+package com.jurgielewicz.forecastapp.ui.MainActivity
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

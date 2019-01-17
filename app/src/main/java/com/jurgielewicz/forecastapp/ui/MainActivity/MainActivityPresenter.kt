@@ -32,10 +32,8 @@ class MainActivityPresenter(private val view: MainActivityContract.View,
     override fun handlePageListener() {
         val item = view.viewPagerCurrentItem()
             if(item == 0 && !hourlySearched){
-                Log.d("Search hourly", place?.name + place?.lat + place?.lng)
                 search(place)
             }else if (item == 1 && !dailySearched){
-                Log.d("Search daily", "debapp")
                 search(place)
             }
         }
@@ -46,6 +44,7 @@ class MainActivityPresenter(private val view: MainActivityContract.View,
     }
 
     override fun search(place: com.jurgielewicz.forecastapp.db.Place) {
+        view.closeDrawer()
         val item = view.viewPagerCurrentItem()
         setSearched(item)
         when(item) {
@@ -73,7 +72,6 @@ class MainActivityPresenter(private val view: MainActivityContract.View,
                 hourlySearched = false
                 dailySearched = false
             }
-
         }
     }
 

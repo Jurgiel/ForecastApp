@@ -1,11 +1,10 @@
-package com.jurgielewicz.forecastapp.ui.MainActivity.recycler.adapter
+package com.jurgielewicz.forecastapp.ui.DailyWeatherFragment
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.jurgielewicz.forecastapp.R
 import com.jurgielewicz.forecastapp.dataModel.Response
-import com.jurgielewicz.forecastapp.ui.MainActivity.recycler.holder.DailyHolder
 
 class DailyAdapter(private val list: List<Response>?): RecyclerView.Adapter<DailyHolder>() {
 

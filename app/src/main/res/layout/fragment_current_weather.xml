@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/currentfragment_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:visibility="invisible"
     tools:context=".ui.CurrentWeatherFragment.CurrentWeatherFragment">
 
     <LinearLayout
@@ -77,22 +79,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/weatherTextView_CurrentLayout" />
 
             <TextView
-                android:id="@+id/feelsLikeTextView_CurrentLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="135dp"
-                android:text="Feels like -16°C"
-                android:textColor="@color/maxTemp"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/temperatureTextView_CurrentLayout"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/dateTextView_CurentLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -112,13 +98,11 @@
                 android:id="@+id/saveLocationButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="71dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_not_saved"
-                app:layout_constraintBottom_toTopOf="@+id/feelsLikeTextView_CurrentLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

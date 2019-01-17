@@ -14,6 +14,7 @@ interface MainActivityContract {
         fun drawerListener()
         fun setupSavedRecycler()
         fun showSavedPlaces(list: List<com.jurgielewicz.forecastapp.db.Place>)
+        fun closeDrawer()
     }
 
     interface Presenter:BasePresenter  {
